@@ -1,4 +1,4 @@
-# Menu Filter - React Fundamental Project 5
+# Filter Menu Display - React Fundamental Project 5
 
 <img width="1140" alt="Project Screenshot" src="https://github.com/user-attachments/assets/126a96d9-734a-4418-9757-f6eb34d7f879" />
 
