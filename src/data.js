@@ -1,3 +1,7 @@
+/**
+ * In-memory menu data. Each item needs: id, title, category, price, img (path), desc.
+ * No backend/API — used as the single source of truth for filtering in App.jsx.
+ */
 const menu = [
   {
     id: 1,

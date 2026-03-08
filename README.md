@@ -1,16 +1,13 @@
-# Filter Menu Display - React Fundamental Project 5
+# Filter Menu Display - React, Vite, JavaScript, Custom CSS Fundamental Project 5
 
-<img width="1140" alt="Project Screenshot" src="https://github.com/user-attachments/assets/126a96d9-734a-4418-9757-f6eb34d7f879" />
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-18.2-blue)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-4.1-646CFF)](https://vitejs.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
----
+An educational React app that shows a food menu and lets you filter items by category (breakfast, lunch, shakes). It’s built with React 18, Vite, and plain JavaScript (no TypeScript), using only React fundamentals: functional components, `useState`, props, and list rendering. There is no backend or external API; menu data lives in a local JavaScript file. It’s ideal for learning component structure, state, and filtering in React.
 
-## Project Summary
-
-Menu Filter is an educational React project that demonstrates core concepts such as state management, component composition, prop drilling, and array manipulation. The application displays a dynamic menu of food items and allows users to filter these items by category (such as breakfast, lunch, and shakes). This project is ideal for beginners and intermediate learners wishing to solidify their understanding of React fundamentals through hands-on practice.
-
-The project is built using **React.js**, with a focus on simplicity, clean code, and best practices. It provides a real-life scenario for filtering and displaying data, a common requirement in modern web applications.
-
-- **Live-Demo:** [https://menu-filter-arnob.netlify.app/](https://menu-filter-arnob.netlify.app/)
+- **Live Demo:** [https://filter-menu-display.vercel.app/](https://filter-menu-display.vercel.app/)
 
 ---
 
@@ -21,219 +18,412 @@ The project is built using **React.js**, with a focus on simplicity, clean code,
 - [Technology Stack](#technology-stack)
 - [Project Structure](#project-structure)
 - [Installation & Setup](#installation--setup)
-- [Usage Guide](#usage-guide)
-- [Component Walkthrough](#component-walkthrough)
+- [How to Run & Use](#how-to-run--use)
+- [Environment Variables (.env)](#environment-variables-env)
+- [Project Walkthrough](#project-walkthrough)
+- [Components & Functionality](#components--functionality)
+- [Data & “API”](#data--api)
+- [Routes & Pages](#routes--pages)
+- [Reusing Components in Other Projects](#reusing-components-in-other-projects)
+- [Code Examples & Teaching Content](#code-examples--teaching-content)
 - [Menu Filtering Logic](#menu-filtering-logic)
 - [Learning Outcomes](#learning-outcomes)
-- [Code Examples](#code-examples)
 - [Keywords](#keywords)
 - [Conclusion](#conclusion)
+- [License](#license)
+
+---
+
+## Project Summary
+
+**Filter Menu Display** is a single-page React application that displays a list of menu items (food with image, title, price, description) and provides category filter buttons (All, Breakfast, Lunch, Shakes). Clicking a category filters the list in place. The app uses only in-memory data (no server or database), making it easy to study and extend. It demonstrates React fundamentals: state with `useState`, passing props, mapping over arrays, and event handlers.
 
 ---
 
 ## Features
 
-- View a menu of various food items with images, prices, and descriptions.
-- Filter menu items by category (e.g., breakfast, lunch, shakes).
-- “All” button to reset and view all menu items.
-- Responsive, easy-to-understand UI.
-- Code structured for learning and extensibility.
+- **Menu listing:** View all food items with image, title, price, and description.
+- **Category filtering:** Filter by “All”, “Breakfast”, “Lunch”, or “Shakes” via buttons.
+- **“All” reset:** “All” shows the full menu again.
+- **Responsive layout:** Grid layout that adapts to different screen sizes.
+- **No external dependencies for logic:** No Redux, React Router, or API — focused on core React.
+- **ESLint:** Lint and lint:fix scripts for code quality.
 
 ---
 
 ## Technology Stack
 
-- **React.js** (Functional Components & Hooks)
-- **JavaScript** (ES6+)
-- **HTML5 & CSS3** (For UI Styling)
-- No external state management or router—focus is on React fundamentals.
+| Technology            | Purpose                                             |
+| --------------------- | --------------------------------------------------- |
+| **React 18**          | UI library, functional components, hooks            |
+| **Vite 4**            | Build tool and dev server                           |
+| **JavaScript (ES6+)** | Application logic, no TypeScript                    |
+| **HTML5 & CSS3**      | Markup and styling (custom CSS, CSS variables)      |
+| **ESLint**            | Linting (React, React Hooks, React Refresh plugins) |
+
+There is **no backend**, **no database**, and **no REST/GraphQL API**. All data is stored in `src/data.js`.
 
 ---
 
 ## Project Structure
 
-```
-Menu-Filter--React-Fundamental-Project-5/
+```bash
+05-menu/
 ├── public/
-│   └── ... (static assets if any)
+│   ├── vite.svg                 # Favicon
+│   └── images/                  # Menu item images (e.g. item-1.jpeg … item-9.jpeg)
 ├── src/
 │   ├── components/
-│   │   ├── Title.jsx           # Renders the app title
-│   │   ├── Menu.jsx            # Displays filtered menu items
-│   │   ├── MenuItem.jsx        # Renders a single menu item
-│   │   └── Categories.jsx      # Renders filter buttons by category
-│   ├── data.js                 # Menu items data array
-│   ├── App.jsx                 # Root component with main state and logic
-│   └── main.jsx                # Entry point
+│   │   ├── Title.jsx            # Section title + underline
+│   │   ├── Categories.jsx       # Category filter buttons
+│   │   ├── Menu.jsx             # Container that maps items to MenuItem
+│   │   └── MenuItem.jsx         # Single menu card (image, title, price, desc)
+│   ├── data.js                  # Menu items array (id, title, category, price, img, desc)
+│   ├── App.jsx                  # Root: state, filter logic, layout
+│   ├── main.jsx                 # Entry: ReactDOM root, StrictMode, App
+│   └── index.css                # Global + project-specific styles
+├── index.html                   # HTML shell, meta tags, root div, script to main.jsx
+├── vite.config.js               # Vite config (React plugin)
+├── .eslintrc.cjs                # ESLint config (React, React Hooks, React Refresh)
 ├── package.json
+├── .gitignore
 └── README.md
 ```
-> **Note:** Actual file names and structure may vary. Components are separated for clarity and reusability.
 
 ---
 
 ## Installation & Setup
 
-1. **Clone the repository:**
+1. **Clone the repository**
+
    ```sh
    git clone https://github.com/arnobt78/Menu-Filter--React-Fundamental-Project-5.git
    cd Menu-Filter--React-Fundamental-Project-5
    ```
 
-2. **Install dependencies:**
+2. **Install dependencies**
+
    ```sh
    npm install
    ```
 
-3. **Run the development server:**
+3. **Run the development server**
+
    ```sh
    npm run dev
    ```
 
-4. **Build for production:**
+   Open the URL shown in the terminal (e.g. `http://localhost:5173`).
+
+4. **Build for production**
+
    ```sh
    npm run build
    ```
 
-5. **Preview the build:**
+   Output goes to the `dist/` folder.
+
+5. **Preview the production build**
+
    ```sh
    npm run preview
    ```
 
----
+6. **Lint and auto-fix**
 
-## Usage Guide
-
-- Upon starting the app, you will see all menu items displayed.
-- At the top, category filter buttons are shown (“All”, “Breakfast”, “Lunch”, “Shakes”, etc.).
-- Click a category button to filter and view only the items from that category.
-- Click “All” to reset and see the complete menu.
+   ```sh
+   npm run lint
+   npm run lint:fix
+   ```
 
 ---
 
-## Component Walkthrough
+## How to Run & Use
 
-### 1. **Title Component**
-   - Displays the main title of your app.
-   - Simple function returning a heading element.
+- **Development:** Run `npm run dev`, open the app in the browser. You see the full menu and category buttons.
+- **Filtering:** Click **All**, **Breakfast**, **Lunch**, or **Shakes** to filter the list. **All** shows every item again.
+- **Learning:** Edit `src/data.js` to add/change items, or tweak `App.jsx` filter logic and observe updates with hot reload.
 
-### 2. **Data Import**
-   - Menu items are imported from `data.js` as an array of objects.
-   - Each object typically includes: `title`, `price`, `image`, `description`, and `category`.
+---
 
-### 3. **App.jsx**
-   - Holds the main state for menu items and categories using React’s `useState`.
-   - Handles logic for filtering and passing data to child components.
+## Environment Variables (.env)
 
-### 4. **Menu.jsx**
-   - Receives filtered menu items as props.
-   - Maps over the array and renders a `MenuItem` for each.
+This project **does not use any environment variables** by default. All configuration is in code and no `.env` file is required to run or build.
 
-### 5. **MenuItem.jsx**
-   - Displays image, title, price, and description for a single menu item.
+If you **extend** the app (e.g. add a backend API), you can introduce a `.env` file and use Vite’s env handling:
 
-### 6. **Categories.jsx**
-   - Receives a list of unique categories.
-   - Renders a button for each category.
-   - Calls filter function on button click.
+1. **Create a `.env` file in the project root** (it is already in `.gitignore`):
+
+   ```env
+   VITE_API_URL=https://your-api.com
+   ```
+
+2. **Use in code:** Only variables prefixed with `VITE_` are exposed to the client:
+
+   ```js
+   const apiUrl = import.meta.env.VITE_API_URL;
+   ```
+
+3. **Optional `.env.example`** for documentation (do not commit secrets):
+
+   ```env
+   VITE_API_URL=https://api.example.com
+   ```
+
+For this repo as-is, you do **not** need to create `.env` or set any variables.
+
+---
+
+## Project Walkthrough
+
+1. **Entry:** `index.html` loads `src/main.jsx`. `main.jsx` mounts `<App />` inside `<React.StrictMode>` into `#root` and imports `index.css`.
+2. **App:** `App.jsx` imports the menu array from `data.js`, derives unique categories with `Set`, and holds two state values: `menuItems` (currently visible items) and `categories` (button labels). `filterItems(category)` updates `menuItems` (either full list or filtered by category).
+3. **UI:** `Title` shows the heading; `Categories` renders one button per category and calls `filterItems` on click; `Menu` receives `menuItems` and renders a `MenuItem` for each. `MenuItem` displays image, title, price, and description.
+
+Data flow: **data.js → App (state) → Categories + Menu → MenuItem**. No routes; single page only.
+
+---
+
+## Components & Functionality
+
+### 1. `Title.jsx`
+
+- **Role:** Renders a section title and an underline.
+- **Props:** `text` (string).
+- **Usage:** `<Title text='our menu' />`.
+
+```jsx
+const Title = ({ text }) => {
+  return (
+    <div className="title">
+      <h2>{text}</h2>
+      <div className="title-underline"></div>
+    </div>
+  );
+};
+export default Title;
+```
+
+**Reuse:** Use in any section that needs a heading + underline; style with your own CSS or the same class names.
+
+---
+
+### 2. `Categories.jsx`
+
+- **Role:** Renders a list of category buttons and calls a filter handler on click.
+- **Props:** `categories` (array of strings), `filterItems` (function that accepts a category string).
+- **Usage:** `<Categories categories={categories} filterItems={filterItems} />`.
+
+```jsx
+const Categories = ({ categories, filterItems }) => {
+  return (
+    <div className="btn-container">
+      {categories.map((category) => (
+        <button
+          type="button"
+          className="btn"
+          key={category}
+          onClick={() => filterItems(category)}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+  );
+};
+export default Categories;
+```
+
+**Reuse:** Pass any array of labels and a callback; useful for tabs, filters, or tag lists.
+
+---
+
+### 3. `Menu.jsx`
+
+- **Role:** Renders a grid of menu items by mapping over an array and passing each item to `MenuItem`.
+- **Props:** `items` (array of objects with at least `id`, `img`, `title`, `price`, `desc`).
+- **Usage:** `<Menu items={menuItems} />`.
+
+```jsx
+import MenuItem from "./MenuItem";
+
+const Menu = ({ items }) => {
+  return (
+    <div className="section-center">
+      {items.map((menuItem) => (
+        <MenuItem key={menuItem.id} {...menuItem} />
+      ))}
+    </div>
+  );
+};
+export default Menu;
+```
+
+**Reuse:** Use for any list of “cards”; ensure each object has `id` and the props expected by `MenuItem` (or adapt `MenuItem`).
+
+---
+
+### 4. `MenuItem.jsx`
+
+- **Role:** Renders one menu card: image, title, price, description.
+- **Props:** `img`, `title`, `price`, `desc` (and typically `id` for the parent’s `key`).
+- **Usage:** Used by `Menu`; can be used standalone with `<MenuItem img="..." title="..." price={9.99} desc="..." />`.
+
+```jsx
+const MenuItem = ({ img, title, price, desc }) => {
+  return (
+    <article className="menu-item">
+      <img src={img} alt={title} className="img" />
+      <div className="item-info">
+        <header>
+          <h5>{title}</h5>
+          <span className="item-price">${price}</span>
+        </header>
+        <p className="item-text">{desc}</p>
+      </div>
+    </article>
+  );
+};
+export default MenuItem;
+```
+
+**Reuse:** Use for product/menu cards in other projects; adjust class names and structure to match your design.
+
+---
+
+## Data & “API”
+
+There is **no backend or API**. Menu data is a JavaScript array in `src/data.js`. Each item has:
+
+- `id` — number (unique)
+- `title` — string
+- `category` — string (`'breakfast'`, `'lunch'`, `'shakes'`)
+- `price` — number
+- `img` — string path (e.g. `/images/item-1.jpeg`, served from `public/`)
+- `desc` — string (description)
+
+Example:
+
+```js
+{
+  id: 1,
+  title: 'buttermilk pancakes',
+  category: 'breakfast',
+  price: 15.99,
+  img: '/images/item-1.jpeg',
+  desc: `I'm baby woke mlkshk wolf bitters...`,
+}
+```
+
+To “add an API” later, you could replace the `import items from './data'` in `App.jsx` with a `useEffect` that fetches from a URL (e.g. from `import.meta.env.VITE_API_URL`) and then call `setMenuItems` with the response.
+
+---
+
+## Routes & Pages
+
+The app is **single-page only**. There are no routes, no React Router, and no separate “pages.” One view shows the title, category buttons, and the (filtered) menu list.
+
+---
+
+## Reusing Components in Other Projects
+
+- **Title:** Copy `Title.jsx` and the `.title` / `.title-underline` styles from `index.css`; use `<Title text="Your Section" />`.
+- **Categories:** Copy `Categories.jsx`; pass `categories={['all', 'cat1', 'cat2']}` and `filterItems={(cat) => yourFilterLogic(cat)}`; style `.btn-container` and `.btn` to match your UI.
+- **Menu + MenuItem:** Copy both; ensure your data has `id`, `img`, `title`, `price`, `desc` (or change prop names in `MenuItem`). Reuse the `.section-center`, `.menu-item`, `.item-info` styles or replace with your own.
+- **Data shape:** Keep the same object shape (`id`, `title`, `category`, `price`, `img`, `desc`) or update `MenuItem` and the filter logic in `App.jsx` to match your fields.
+
+---
+
+## Code Examples & Teaching Content
+
+**Deriving unique categories from the menu (e.g. in App):**
+
+```js
+import items from "./data";
+
+const allCategories = ["all", ...new Set(items.map((item) => item.category))];
+// Result: ['all', 'breakfast', 'lunch', 'shakes']
+```
+
+**Filter handler (in App):**
+
+```js
+const [menuItems, setMenuItems] = useState(items);
+
+const filterItems = (category) => {
+  if (category === "all") {
+    setMenuItems(items);
+    return;
+  }
+  setMenuItems(items.filter((item) => item.category === category));
+};
+```
+
+**Rendering categories as buttons (concept used in Categories.jsx):**
+
+```jsx
+{
+  categories.map((category) => (
+    <button key={category} onClick={() => filterItems(category)}>
+      {category}
+    </button>
+  ));
+}
+```
+
+**Rendering a list with a stable key (concept used in Menu.jsx):**
+
+```jsx
+{
+  items.map((menuItem) => <MenuItem key={menuItem.id} {...menuItem} />);
+}
+```
 
 ---
 
 ## Menu Filtering Logic
 
-1. **Extract Unique Categories:**
-   - Use JavaScript’s `Set` object to get unique category names from the data.
-   - Add an “all” category to allow viewing all items.
-
-   ```js
-   const tempCategories = menu.map((item) => item.category);
-   const tempSet = new Set(tempCategories);
-   const categories = ["all", ...tempSet];
-   ```
-
-2. **State Management:**
-   - `menu` state holds current menu items to display.
-   - `categories` state holds all unique categories.
-
-3. **Filtering Function:**
-   - When a category button is clicked, filter `menu` items by the selected category.
-   - If “all” is selected, reset to the full menu.
-
-   ```js
-   const filterItems = (category) => {
-     if (category === "all") {
-       setMenu(menuData);
-       return;
-     }
-     setMenu(menuData.filter(item => item.category === category));
-   }
-   ```
+1. **Unique categories:** `['all', ...new Set(items.map((item) => item.category))]` so we have one button per category plus “all”.
+2. **State:** `menuItems` is the array currently shown; `categories` is the list of button labels (fixed after first render).
+3. **Filter:** On button click, `filterItems(category)` runs. If `category === 'all'`, set `menuItems` back to the full `items`; otherwise set `menuItems` to `items.filter((item) => item.category === category)`.
+4. **UI:** `Menu` receives `menuItems` and re-renders the list; no page reload.
 
 ---
 
 ## Learning Outcomes
 
-- How to break down a UI into reusable React components.
-- Best practices for state management using hooks.
-- Array manipulation and rendering lists in React.
-- Using JavaScript’s `Set` for deduplication.
-- Handling events and prop drilling in React.
-
----
-
-## Code Examples
-
-**Example: Using Set to Get Unique Categories**
-```js
-const tempCategories = menu.map((item) => item.category);
-const tempSet = new Set(tempCategories);
-const categories = ["all", ...tempSet];
-console.log(categories); // ['all', 'breakfast', 'lunch', 'shakes']
-```
-
-**Example: Filtering Menu Items**
-```js
-const filterItems = (category) => {
-  if (category === "all") {
-    setMenu(menuData);
-    return;
-  }
-  setMenu(menuData.filter(item => item.category === category));
-};
-```
-
-**Example: Rendering Categories**
-```js
-return (
-  <div>
-    {categories.map((category, index) => (
-      <button key={index} onClick={() => filterItems(category)}>
-        {category}
-      </button>
-    ))}
-  </div>
-);
-```
+- Splitting a UI into reusable components (Title, Categories, Menu, MenuItem).
+- Using `useState` for the displayed list and a static list of categories.
+- Deriving values (e.g. unique categories) with `map` and `Set`.
+- Passing props and callbacks (e.g. `filterItems`) for parent–child communication.
+- Rendering lists with `map` and a stable `key` (e.g. `id`).
+- Handling click events and updating state to drive the UI.
+- Organizing data in a single module (`data.js`) and importing it in the root component.
 
 ---
 
 ## Keywords
 
-- React.js
-- useState
-- Functional Components
-- Props
-- Array.map
-- JavaScript Set
-- Filtering
-- Dynamic Rendering
-- Menu App
-- Educational Project
+React, React 18, useState, functional components, props, Vite, JavaScript, ES6+, filter menu, food menu, category filter, breakfast, lunch, shakes, array map, JavaScript Set, filtering, dynamic rendering, list rendering, event handling, component composition, no backend, educational project, open source.
 
 ---
 
 ## Conclusion
 
-This Menu Filter project is an excellent starting point for learning core React concepts. By building and understanding this application, you will gain confidence in handling state, passing props, rendering dynamic lists, and implementing real-world functionality like filtering. The codebase is clean and easy to read, making it suitable for self-study, tutorials, and as a foundation for more complex projects.
+Filter Menu Display is a small, focused React app for learning core concepts: state, props, list rendering, and filtering. The codebase is minimal and uses no router or global state, so it’s easy to read and adapt. You can use it for self-study, workshops, or as a base for a larger menu or product listing (e.g. by plugging in an API and optional `.env` as described above).
 
 ---
+
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to use, modify, and distribute the code as per the terms of the license.
+
+## Happy Coding! 🎉
+
+This is an **open-source project** — feel free to use, enhance, and extend this project further!
+
+If you have any questions or want to share your work, reach out via GitHub or my portfolio at [https://www.arnobmahmud.com](https://www.arnobmahmud.com).
+
+**Enjoy building and learning!** 🚀
+
+Thank you! 😊
