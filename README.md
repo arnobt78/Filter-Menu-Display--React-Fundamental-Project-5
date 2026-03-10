@@ -9,7 +9,7 @@ An educational React app that shows a food menu and lets you filter items by cat
 
 - **Live Demo:** [https://filter-menu-display.vercel.app/](https://filter-menu-display.vercel.app/)
 
-<img width="1590" height="946" alt="Screenshot 2026-03-10 at 16 32 13" src="https://github.com/user-attachments/assets/54187ef4-b1da-4895-b01f-07d752a111eb" />
+<img width="1360" height="870" alt="Screenshot 2026-03-10 at 16 39 14" src="https://github.com/user-attachments/assets/ba3dac45-2839-404a-8519-626eb621a902" />
 
 ## Table of Contents
 
