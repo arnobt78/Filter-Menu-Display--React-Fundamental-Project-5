@@ -1,4 +1,4 @@
-# Filter Menu Display - React, Vite, JavaScript, Custom CSS Fundamental Project 5
+# Category Filter Display - React, Vite, JavaScript, Custom CSS Fundamental Project 5
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![React](https://img.shields.io/badge/React-18.2-blue)](https://react.dev/)
@@ -9,7 +9,7 @@ An educational React app that shows a food menu and lets you filter items by cat
 
 - **Live Demo:** [https://filter-menu-display.vercel.app/](https://filter-menu-display.vercel.app/)
 
----
+<img width="1590" height="946" alt="Screenshot 2026-03-10 at 16 32 13" src="https://github.com/user-attachments/assets/54187ef4-b1da-4895-b01f-07d752a111eb" />
 
 ## Table of Contents
 
